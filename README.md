@@ -621,3 +621,6 @@ class Solution {
 
 ### Course Schedule - https://leetcode.com/problems/course-schedule/description/
 Couldn't Solve!
+
+### Open the Lock - https://leetcode.com/problems/open-the-lock/description/
+Couldn't Solve!
