@@ -624,3 +624,47 @@ Couldn't Solve!
 
 ### Open the Lock - https://leetcode.com/problems/open-the-lock/description/
 Couldn't Solve!
+
+### Reorder LinkedList - https://leetcode.com/problems/reorder-list/description/
+```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+        ArrayList<ListNode> list = new ArrayList<ListNode>();
+
+        ListNode currentNode = head;
+        while(currentNode.next != null){
+            list.add(currentNode);
+            currentNode = currentNode.next;
+        }
+        list.add(currentNode);
+
+        int startIndex = 0;
+        int endIndex = list.size() - 1;
+        while(startIndex < endIndex){
+            ListNode startNode = list.get(startIndex);
+            ListNode endNode = list.get(endIndex);
+            startNode.next = endNode;
+            startIndex++;
+            endIndex--;
+            if(startIndex < endIndex){
+                endNode.next = list.get(startIndex);
+            } else if(startIndex == endIndex) {
+                endNode.next = list.get(startIndex);
+                endNode.next.next = null;
+            } else {
+                endNode.next = null;
+            }
+        }
+    }
+}
+```
