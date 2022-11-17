@@ -2,7 +2,7 @@
 
 ## MEDIUM
 
-### Delete Nth last node - https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
+### 1. Delete Nth last node - https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
 
 You got to remember this only since this has a simple concept but confusing implementation with difficult to handle edge cases.
 ```java
@@ -28,7 +28,7 @@ public ListNode removeNthFromEnd(ListNode head, int n) {
 }
 ```
 
-### Fruit Into Baskets - https://leetcode.com/problems/fruit-into-baskets/description/ 
+### 2. Fruit Into Baskets - https://leetcode.com/problems/fruit-into-baskets/description/ 
 
 My own solution:
 ```java
@@ -81,7 +81,7 @@ class Solution {
 }
 ```
 
-### Container with most water - https://leetcode.com/problems/container-with-most-water/description/ 
+### 3. Container with most water - https://leetcode.com/problems/container-with-most-water/description/ 
 
 2 pointers:
 ```java
@@ -108,7 +108,7 @@ class Solution {
 }
 ```
 
-### Implement a Min Stack - https://leetcode.com/problems/min-stack/description/
+### 4. Implement a Min Stack - https://leetcode.com/problems/min-stack/description/
 
 Stack:
 ```java
@@ -152,7 +152,7 @@ class MinStack {
  */
 ```
 
-### Word Search - https://leetcode.com/problems/word-search
+### 5. Word Search - https://leetcode.com/problems/word-search
 
 Backtracking:
 ```java
@@ -209,7 +209,7 @@ class Solution {
 }
 ```
 
-### Rotten Oranges - https://leetcode.com/problems/rotting-oranges/description/
+### 6. Rotten Oranges - https://leetcode.com/problems/rotting-oranges/description/
 ```java
 class Solution {
     public int orangesRotting(int[][] grid) {
@@ -268,7 +268,7 @@ class Solution {
 }
 ```
 
-### Combination Sum (Can Reuse Element) - https://leetcode.com/problems/combination-sum/description/
+### 7. Combination Sum (Can Reuse Element) - https://leetcode.com/problems/combination-sum/description/
 ```java
 class Solution {
     private List<List<Integer>> resultList = new LinkedList<List<Integer>>();
@@ -310,7 +310,7 @@ class Solution {
 }
 ```
 
-### Combination Sum (Can’t Reuse Element) - https://leetcode.com/problems/combination-sum-ii/description/
+### 8. Combination Sum (Can’t Reuse Element) - https://leetcode.com/problems/combination-sum-ii/description/
 ```java
 class Solution {
     private List<List<Integer>> resultList = new LinkedList<List<Integer>>();
@@ -356,7 +356,7 @@ class Solution {
 }
 ```
 
-### Permutations of Number Array (Without Duplicates) - https://leetcode.com/problems/permutations/description/
+### 9. Permutations of Number Array (Without Duplicates) - https://leetcode.com/problems/permutations/description/
 ```java
 class Solution {
     List<List<Integer>> resultList = new LinkedList<List<Integer>>();
@@ -387,7 +387,7 @@ class Solution {
 }
 ```
 
-### Permutations of Number Array (With Duplicates) - https://leetcode.com/problems/permutations-ii/description/
+### 10. Permutations of Number Array (With Duplicates) - https://leetcode.com/problems/permutations-ii/description/
 ```java
 class Solution {
     List<List<Integer>> resultList = new LinkedList<List<Integer>>();
@@ -423,7 +423,7 @@ class Solution {
 }
 ```
 
-### Subsets of Number Array (Without Duplicates) - https://leetcode.com/problems/subsets/description/
+### 11. Subsets of Number Array (Without Duplicates) - https://leetcode.com/problems/subsets/description/
 ```java
 class Solution {
     private List<List<Integer>> resultList = new LinkedList<List<Integer>>();
@@ -450,7 +450,7 @@ class Solution {
 }
 ```
 
-### Subsets of Number Array (With Duplicates) - https://leetcode.com/problems/subsets-ii/description/
+### 12. Subsets of Number Array (With Duplicates) - https://leetcode.com/problems/subsets-ii/description/
 ```java
 class Solution {
     List<List<Integer>> resultList = new LinkedList<List<Integer>>();
@@ -482,7 +482,7 @@ class Solution {
 }
 ```
 
-### Palindrome Partitioning - https://leetcode.com/problems/palindrome-partitioning/description/ 
+### 13. Palindrome Partitioning - https://leetcode.com/problems/palindrome-partitioning/description/ 
 ```java
 class Solution {
     List<List<String>> resultList = new LinkedList<List<String>>();
@@ -522,7 +522,7 @@ class Solution {
 }
 ```
 
-### Binary Tree Level Order Traversal - https://leetcode.com/problems/binary-tree-level-order-traversal/description/
+### 14. Binary Tree Level Order Traversal - https://leetcode.com/problems/binary-tree-level-order-traversal/description/
 ```java
 /**
  * Definition for a binary tree node.
@@ -562,7 +562,7 @@ class Solution {
 }
 ```
 
-### Validate Binary Search Tree - https://leetcode.com/problems/validate-binary-search-tree/description/
+### 15. Validate Binary Search Tree - https://leetcode.com/problems/validate-binary-search-tree/description/
 ```java
 /**
  * Definition for a binary tree node.
@@ -619,13 +619,13 @@ class Solution {
 }
 ```
 
-### Course Schedule - https://leetcode.com/problems/course-schedule/description/
+### 16. Course Schedule - https://leetcode.com/problems/course-schedule/description/
 Couldn't Solve!
 
-### Open the Lock - https://leetcode.com/problems/open-the-lock/description/
+### 17. Open the Lock - https://leetcode.com/problems/open-the-lock/description/
 Couldn't Solve!
 
-### Reorder LinkedList - https://leetcode.com/problems/reorder-list/description/
+### 18. Reorder LinkedList - https://leetcode.com/problems/reorder-list/description/
 ```java
 /**
  * Definition for singly-linked list.
@@ -669,7 +669,7 @@ class Solution {
 }
 ```
 
-### Top K Frequent Elements - https://leetcode.com/problems/top-k-frequent-elements/description/
+### 19. Top K Frequent Elements - https://leetcode.com/problems/top-k-frequent-elements/description/
 ```java
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
