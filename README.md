@@ -668,3 +668,52 @@ class Solution {
     }
 }
 ```
+
+### Top K Frequent Elements - https://leetcode.com/problems/top-k-frequent-elements/description/
+```java
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
+        int maxFrequency = 0;
+
+        for(int i = 0; i < nums.length; i++){
+            if(frequencyMap.containsKey(nums[i])){
+                int frequency = frequencyMap.get(nums[i]);
+                frequencyMap.put(nums[i], frequency + 1);
+                maxFrequency = Math.max(frequency + 1, maxFrequency);
+            } else {
+                frequencyMap.put(nums[i], 1);
+                maxFrequency = Math.max(1, maxFrequency);
+            }
+        }
+
+        List<LinkedList<Integer>> frequencyBuckets = 
+        new ArrayList<LinkedList<Integer>>(maxFrequency);
+
+       for(int i = 0; i < maxFrequency; i++){
+           frequencyBuckets.add(new LinkedList<Integer>());
+       }
+
+        frequencyMap.forEach((num, frequency) -> {
+            frequencyBuckets.get(frequency - 1).add(num);
+        });
+
+        // return top k
+        int[] sol = new int[k];
+        int added = 0;
+        int bucketIndex = frequencyBuckets.size() - 1;
+
+        while(added < k && bucketIndex >= 0){
+            ListIterator<Integer> iterator = frequencyBuckets.get(bucketIndex).listIterator();
+
+            while(iterator.hasNext() && added < k){
+                sol[added] = iterator.next();
+                added++;
+            }
+            bucketIndex--;
+        }
+
+        return sol;
+    }
+}
+```
