@@ -717,3 +717,30 @@ class Solution {
     }
 }
 ```
+
+### 20. Longest Substring Without Repeating Characters - https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+```java
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        // Sliding window approach
+        int start = 0;
+        int end = 0;
+        HashSet<Character> window = new HashSet<>();
+        int maxLength = 0;
+        
+        while(end < s.length()){
+            if(window.contains(s.charAt(end))){
+                // window shrinking
+                window.remove(s.charAt(start++));
+            } else {
+                // window growing
+                window.add(s.charAt(end++));
+                maxLength = Math.max(window.size(), maxLength);
+                System.out.println(maxLength);
+            }
+        }
+
+        return maxLength;
+    }
+}
+```
