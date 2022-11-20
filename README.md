@@ -817,3 +817,6 @@ class Solution {
     }
 }
 ```
+
+### Longest Repeating Character Replacement - https://leetcode.com/problems/longest-repeating-character-replacement/
+Could'nt Solve!
