@@ -744,3 +744,76 @@ class Solution {
     }
 }
 ```
+
+### Group Anagrams - https://leetcode.com/problems/group-anagrams/description/
+
+#### Using Arrays.sort():
+```java
+import java.util.List;
+import java.util.Set;
+import java.util.Map;
+import java.util.Arrays;
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {      
+        Map<String, List<String>> solMap = new HashMap<>(strs.length);
+        
+        for(int i = 0; i < strs.length; i++){            
+            String key = generateKey(strs[i]);
+            if(solMap.containsKey(key)){
+                solMap.get(key).add(strs[i]);
+            } else {
+                List<String> groupedList = new ArrayList<>();
+                groupedList.add(strs[i]);
+                solMap.put(key, groupedList);
+            }
+        }
+        return new ArrayList<>(solMap.values());
+    }
+    
+    public String generateKey(String string){
+        if(string.length() == 0){ return string; }
+        
+        char[] charArray = string.toCharArray();
+        Arrays.sort(charArray);
+        return String.valueOf(charArray);
+    }
+}
+```
+
+#### Wihtout using Arrays.sort():
+```java
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String, LinkedList<String>> map = new HashMap<>();
+
+        for(int i = 0; i < strs.length; i++){
+            int[] chars = new int[26];
+            for(int j = 0; j < strs[i].length(); j++){
+                chars[(int)(strs[i].charAt(j) - 'a')]++;
+            }
+            StringBuilder sb = new StringBuilder();
+            for(int k = 0; k < chars.length; k++){
+                sb.append(String.valueOf(chars[k]));
+                sb.append(",");
+            }
+            String key = sb.toString();
+
+            if(map.containsKey(key)){
+                map.get(key).add(strs[i]);
+            } else {
+                LinkedList<String> newList = new LinkedList<>();
+                newList.add(strs[i]);
+                map.put(key, newList);
+            }
+        }
+
+        List<List<String>> solList = new LinkedList<>();
+        map.forEach((key, value) -> {
+            solList.add(value);
+        });
+
+        return solList;
+    }
+}
+```
