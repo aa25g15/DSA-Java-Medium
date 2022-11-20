@@ -745,7 +745,7 @@ class Solution {
 }
 ```
 
-### Group Anagrams - https://leetcode.com/problems/group-anagrams/description/
+### 21. Group Anagrams - https://leetcode.com/problems/group-anagrams/description/
 
 #### Using Arrays.sort():
 ```java
@@ -781,7 +781,7 @@ class Solution {
 }
 ```
 
-#### Wihtout using Arrays.sort():
+#### Without using Arrays.sort():
 ```java
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
@@ -818,5 +818,5 @@ class Solution {
 }
 ```
 
-### Longest Repeating Character Replacement - https://leetcode.com/problems/longest-repeating-character-replacement/
+### 22. Longest Repeating Character Replacement - https://leetcode.com/problems/longest-repeating-character-replacement/
 Could'nt Solve!
