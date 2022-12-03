@@ -1,5 +1,7 @@
 # Leetcode DSA in Java
 
+https://neetcode.io/practice
+
 ## MEDIUM
 
 ### 1. Delete Nth last node - https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
