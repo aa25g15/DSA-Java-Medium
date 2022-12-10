@@ -867,3 +867,46 @@ class Solution {
     }
 }
 ```
+
+### 24. Number of Islands - https://leetcode.com/problems/number-of-islands/description/
+```java
+class Solution {
+    int solution = 0;
+
+    public int numIslands(char[][] grid) {
+        for(int row = 0; row < grid.length; row++){
+            for(int col = 0; col < grid[0].length; col++){
+                if(grid[row][col] == '1'){
+                    // Found the starting of an island
+                    this.solution++;
+                    // Mark the territory as explored
+                    this.exploreIsland(grid, row, col);
+                }
+            }
+        }
+        return this.solution;
+    }
+
+    private void exploreIsland(char[][] grid, int row, int col){
+        if(
+            row < 0 ||
+            col < 0 ||
+            row > grid.length - 1 ||
+            col > grid[0].length - 1
+        ){
+            // Out of bounds
+            return;
+        }
+        if(grid[row][col] != '1'){
+            // This is not a land, return
+            return;
+        }
+        grid[row][col] = '-'; // Visited
+        
+        exploreIsland(grid, row - 1, col); // top
+        exploreIsland(grid, row + 1, col); // bottom
+        exploreIsland(grid, row, col - 1); // left
+        exploreIsland(grid, row, col + 1); // top
+    }
+}
+```
