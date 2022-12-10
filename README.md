@@ -910,3 +910,51 @@ class Solution {
     }
 }
 ```
+
+### 25. Kth Smallest Element in BST - https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    List<Integer> traversalList = new LinkedList<>();
+
+    public int kthSmallest(TreeNode root, int k) {
+        this.inorderTraversal(root);
+        
+        int counter = 0;
+        ListIterator<Integer> iterator = this.traversalList.listIterator();
+        while (iterator.hasNext()){
+            if(counter == k - 1){
+                break;
+            }
+            counter++;
+            iterator.next();
+        }
+        return iterator.next();
+    }
+
+    private void inorderTraversal(TreeNode node){
+        if(node == null){
+            return;
+        }
+
+        // Left, Node, Right
+        inorderTraversal(node.left);
+        this.traversalList.add(node.val);
+        inorderTraversal(node.right);
+    }
+}
+```
