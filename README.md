@@ -958,3 +958,51 @@ class Solution {
     }
 }
 ```
+
+### 26. - Construct BST with Preorder and Inorder Traversal
+
+You need to remember this question. I am unable to understand it.
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    int iterations = 0;
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int i = 0; i < inorder.length; i++){
+            map.put(inorder[i], i);
+        }
+        return createNodes(0, preorder.length - 1, preorder, inorder, map);
+    }
+
+    private TreeNode createNodes(int preStart, int preEnd, int[] preorder, int[] inorder, HashMap<Integer, Integer> map){
+        if(preStart > preEnd || this.iterations > preorder.length - 1){
+            return null;
+        }
+
+        int indexInorder = map.get(preorder[this.iterations]);
+        TreeNode node = new TreeNode(preorder[this.iterations]);
+
+        this.iterations++;
+
+        node.left = createNodes(preStart, indexInorder - 1, preorder, inorder, map);
+        node.right = createNodes(indexInorder + 1, preEnd, preorder, inorder, map);
+
+        return node;
+    }
+}
+```
