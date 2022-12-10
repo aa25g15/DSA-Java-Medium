@@ -822,3 +822,48 @@ class Solution {
 
 ### 22. Longest Repeating Character Replacement - https://leetcode.com/problems/longest-repeating-character-replacement/
 Could'nt Solve!
+
+### 23. 3Sum - https://leetcode.com/problems/3sum/description/
+```java
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        return solve(nums, 0);
+    }
+
+    private List<List<Integer>> solve(int[] nums, int target){
+        HashSet<List<Integer>> set = new HashSet<>();
+        Arrays.sort(nums);
+
+        for(int i = 0; i < nums.length - 2; i++){
+            int j = i + 1;
+            int k = nums.length - 1;
+
+            while(j < k){
+                int sum = nums[i] + nums[j] + nums[k];
+
+                if(sum == target){
+                    List<Integer> sol = new LinkedList<>();
+                    sol.add(nums[i]);
+                    sol.add(nums[j++]);
+                    sol.add(nums[k--]);
+                    set.add(sol);
+                    continue;
+                }
+
+                if(sum < target){
+                    // We are less than target, array is sorted, we need to increase sum
+                    j++;
+                    continue;
+                }
+
+                if(sum > target){
+                    // We are more than target, array is sorted, we need to reduce sum
+                    k--;
+                }
+            }
+        }
+
+        return new ArrayList<>(set);
+    }
+}
+```
