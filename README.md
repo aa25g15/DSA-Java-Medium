@@ -959,7 +959,7 @@ class Solution {
 }
 ```
 
-### 26. - Construct BST with Preorder and Inorder Traversal
+### 26. - Construct BST with Preorder and Inorder Traversal - https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
 
 You need to remember this question. I am unable to understand it.
 ```java
