@@ -869,6 +869,11 @@ class Solution {
 ```
 
 ### 24. Number of Islands - https://leetcode.com/problems/number-of-islands/description/
+
+* Find land starting location
+* Increment numIslands
+* Then, recursively mark all the touching land locations by assigning '-'
+* Continue traversing the grid
 ```java
 class Solution {
     int solution = 0;
@@ -912,6 +917,8 @@ class Solution {
 ```
 
 ### 25. Kth Smallest Element in BST - https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/
+
+* Concept - Remember inorder traversal of a BST is always sorted!
 ```java
 /**
  * Definition for a binary tree node.
@@ -1008,6 +1015,8 @@ class Solution {
 ```
 
 ### 27. Kth Largest Element - https://leetcode.com/problems/kth-largest-element-in-an-array/description/
+
+* Simply use a heap and poll elements
 ```java
 class Solution {
     public int findKthLargest(int[] nums, int k) {
@@ -1026,7 +1035,11 @@ class Solution {
 }
 ```
 
-### Check Sudoku - https://leetcode.com/problems/valid-sudoku/description/
+### 28. Check Sudoku - https://leetcode.com/problems/valid-sudoku/description/
+
+* Check row uniqueness with a set
+* Check col uniqueness with a set
+* Check region uniqueness with a set
 ```java
 class Solution {
     public boolean isValidSudoku(char[][] board) {
@@ -1103,6 +1116,35 @@ class Solution {
             return true;
         }
         return false;
+    }
+}
+```
+
+### 29. Product of Array Except Self - https://leetcode.com/problems/product-of-array-except-self/description/
+
+One of those questions which you have to remember.
+* Populate res array with product of all elements before position i during pass from left to right
+* On another pass from right to left, multiply the value in res at position i with product of all elements after i
+```java
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int[] res = new int[nums.length];
+
+        // Pre-Product
+        int preProduct = 1;
+        for(int i = 0; i < nums.length; i++){
+            res[i] = preProduct;
+            preProduct *= nums[i];
+        }
+
+        // Post-Product
+        int postProduct = 1;
+        for(int j = nums.length - 1; j >= 0; j--){
+            res[j] *= postProduct;
+            postProduct *= nums[j];
+        }
+
+        return res;
     }
 }
 ```
