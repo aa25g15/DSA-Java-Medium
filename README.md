@@ -1006,3 +1006,22 @@ class Solution {
     }
 }
 ```
+
+### 27. Kth Largest Element - https://leetcode.com/problems/kth-largest-element-in-an-array/description/
+```java
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(nums.length, Comparator.reverseOrder());
+
+        for(int i = 0; i < nums.length; i++){
+            maxHeap.add(nums[i]);
+        }
+
+        for(int j = 0; j < k - 1; j++){
+            maxHeap.poll(); // Remember poll is faster than remove if you want to remove the root element everytime
+        }
+
+        return maxHeap.peek();
+    }
+}
+```
