@@ -1025,3 +1025,84 @@ class Solution {
     }
 }
 ```
+
+### Check Sudoku - https://leetcode.com/problems/valid-sudoku/description/
+```java
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        for(int row = 0; row < board.length; row++){
+            if(!this.checkRow(board, row)) return false;
+        }
+
+        for(int col = 0; col < board[0].length; col++){
+            if(!this.checkCol(board, col)) return false;
+        }
+
+        return (
+            this.checkSection(board, 0, 2, 0, 2) &&
+            this.checkSection(board, 3, 5, 0, 2) &&
+            this.checkSection(board, 6, 8, 0, 2) &&
+            this.checkSection(board, 0, 2, 3, 5) &&
+            this.checkSection(board, 3, 5, 3, 5) &&
+            this.checkSection(board, 6, 8, 3, 5) &&
+            this.checkSection(board, 0, 2, 6, 8) &&
+            this.checkSection(board, 3, 5, 6, 8) &&
+            this.checkSection(board, 6, 8, 6, 8)
+        );
+    }
+
+    private boolean checkRow(char[][] board, int row){
+        HashSet<Character> set = new HashSet<>();
+        for(int i = 0; i < board[row].length; i++){
+            if(!checkChar(board[row][i])){
+                continue;
+            }
+            if(set.contains(board[row][i])){
+                // Repeated
+                return false;
+            }
+            set.add(board[row][i]);
+        }
+        return true;
+    }
+
+    private boolean checkCol(char[][] board, int col){
+        HashSet<Character> set = new HashSet<>();
+        for(int i = 0; i < board.length; i++){
+            if(!checkChar(board[i][col])){
+                continue;
+            }
+            if(set.contains(board[i][col])){
+                // Repeated
+                return false;
+            }
+            set.add(board[i][col]);
+        }
+        return true;
+    }
+
+    private boolean checkSection(char[][] board, int rowStart, int rowEnd, int colStart, int colEnd){
+        HashSet<Character> set = new HashSet<>();
+        for(int i = rowStart; i <= rowEnd; i++){
+            for(int j = colStart; j <= colEnd; j++){
+                if(!checkChar(board[i][j])){
+                    continue;
+                }
+                if(set.contains(board[i][j])){
+                    // Repeated
+                    return false;
+                }
+                set.add(board[i][j]);
+                }
+        }
+        return true;
+    }
+
+    private boolean checkChar(char c){
+        if(c >= '1' && c <= '9'){
+            return true;
+        }
+        return false;
+    }
+}
+```
