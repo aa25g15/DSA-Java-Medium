@@ -322,40 +322,34 @@ class Solution {
 ### 7. Combination Sum (Can Reuse Element) - https://leetcode.com/problems/combination-sum/description/
 ```java
 class Solution {
-    private List<List<Integer>> resultList = new LinkedList<List<Integer>>();
-    
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        Arrays.sort(candidates);
-        generateCombinations(0, 0, target, 0, new LinkedList<Integer>(), candidates);
+    List<List<Integer>> solList = new LinkedList<>();
 
-        return resultList;
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        // Arrays.sort(candidates);
+        generateCombs(candidates, target, 0, new LinkedList<Integer>(), 0, 0);
+        return this.solList;
     }
 
-    private void generateCombinations(
-        int numCombs,
-        int totalSum,
-        int target,
-        int start,
-        LinkedList<Integer> combs,
-        int[] candidates
+    private void generateCombs(
+        int[] candidates, 
+        int target, 
+        int sum, 
+        LinkedList<Integer> sol, 
+        int index,
+        int numCombs
     ){
-        if(numCombs >= 150 || totalSum > target) return;
-        if(totalSum == target) this.resultList.add(new LinkedList<Integer>(combs));
+        if(numCombs >= 150 || sum > target){
+            return;
+        }
+        
+        if(sum == target){
+            this.solList.add(new LinkedList<>(sol));
+        }
 
-        // At any stage, all candidates should be considered, repeat candidates are allowed
-        for(int i = start; i < candidates.length; i++) {
-            combs.add(candidates[i]);
-
-            generateCombinations(
-                numCombs + 1,
-                totalSum + candidates[i],
-                target,
-                i, // not i + 1 since we are also considering duplicates
-                combs,
-                candidates
-            );
-
-            combs.removeLast();
+        for(int i = index; i < candidates.length; i++){
+            sol.push(candidates[i]);
+            generateCombs(candidates, target, sum + candidates[i], sol, i, numCombs + 1);
+            sol.pop();
         }
     }
 }
