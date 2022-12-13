@@ -30,6 +30,55 @@ public ListNode removeNthFromEnd(ListNode head, int n) {
 }
 ```
 
+Implementation using stack:
+```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        Stack<ListNode> stack = new Stack<>();
+
+        ListNode currentNode = head;
+        while(currentNode != null){
+            stack.push(currentNode);
+            currentNode = currentNode.next;
+        }
+
+        // Boundary cases
+        if(n == stack.size()){
+            return head.next;
+        }
+
+        if(n == 1){
+            stack.pop();
+            ListNode beforeNthNode = stack.peek();
+            beforeNthNode.next = null;
+            return head;
+        }
+
+        for(int i = 0; i < n - 2; i++){
+            stack.pop();
+        }
+        
+        ListNode afterNthNode = stack.pop();
+        ListNode nthNode = stack.pop();
+        ListNode beforeNthNode = stack.pop();
+
+        beforeNthNode.next = afterNthNode;
+
+        return head;
+    }
+}
+```
+
 ### 2. Fruit Into Baskets - https://leetcode.com/problems/fruit-into-baskets/description/ 
 
 My own solution:
