@@ -404,29 +404,25 @@ class Solution {
 ### 9. Permutations of Number Array (Without Duplicates) - https://leetcode.com/problems/permutations/description/
 ```java
 class Solution {
-    List<List<Integer>> resultList = new LinkedList<List<Integer>>();
+    List<List<Integer>> solList = new LinkedList<>();
 
     public List<List<Integer>> permute(int[] nums) {
-        generatePerms(nums, new LinkedList<Integer>());
-
-        return this.resultList;
+        generatePerms(nums, new HashSet<Integer>(), new LinkedList<>());
+        return this.solList;
     }
 
-    private void generatePerms(int[] nums, LinkedList<Integer> tempList){
-        if(tempList.size() == nums.length){
-            this.resultList.add(new LinkedList<Integer>(tempList));
+    private void generatePerms(int[] nums, HashSet<Integer> set, LinkedList<Integer> sol){
+        if(set.size() == nums.length){
+            this.solList.add(new LinkedList<Integer>(sol));
             return;
         }
-
-        // At any position we have to consider all values that are left except the values
-        // chosen already
-
-        for(int i = 0; i < nums.length; i++) {
-            if(tempList.contains(nums[i])) continue; // We have already chosen this element
-
-            tempList.add(nums[i]);
-            generatePerms(nums, tempList);
-            tempList.removeLast(); // Backtrack cleanup step
+        for(int i = 0; i < nums.length; i++){
+            if(set.contains(nums[i])) continue; // Candidate considered
+            set.add(nums[i]);
+            sol.push(nums[i]);
+            generatePerms(nums, set, sol);
+            set.remove(nums[i]);
+            sol.pop();
         }
     }
 }
