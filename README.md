@@ -1174,3 +1174,46 @@ class Solution {
     }
 }
 ```
+
+### 30. Longest Consecutive Sequence - https://leetcode.com/problems/longest-consecutive-sequence/description/
+```java
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        if(nums.length == 0) return 0;
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int max = 1;
+
+        for(int i = 0; i < nums.length; i++){
+            map.put(nums[i], i);
+        }
+
+        for(int i = 0; i < nums.length; i++){
+            max = Math.max(findLongest(nums[i], map, nums), max);
+        }
+
+        return max;
+    }
+
+    private int findLongest(int num, HashMap<Integer, Integer> map, int[] nums){
+        int current = num;
+        int sol = 0;
+        // Search forward
+        while(map.containsKey(current)){
+            nums[map.get(current)] = Integer.MIN_VALUE;
+            sol++;
+            current++;
+            if(sol == map.size()) return sol;
+        }
+        // Search backward
+        current = num - 1;
+        while(map.containsKey(current)){
+            nums[map.get(current)] = Integer.MIN_VALUE;
+            sol++;
+            current--;
+            if(sol == map.size()) return sol;
+        }
+        return sol;
+    }
+}
+```
