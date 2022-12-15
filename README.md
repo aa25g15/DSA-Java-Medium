@@ -467,25 +467,20 @@ class Solution {
 ### 11. Subsets of Number Array (Without Duplicates) - https://leetcode.com/problems/subsets/description/
 ```java
 class Solution {
-    private List<List<Integer>> resultList = new LinkedList<List<Integer>>();
+    List<List<Integer>> solList = new LinkedList<>();
 
     public List<List<Integer>> subsets(int[] nums) {
-        Arrays.sort(nums);
-        generateSubsets(nums, new LinkedList<Integer>(), 0);
-        return this.resultList;
+        generateSubsets(nums, 0, new LinkedList<Integer>());
+        return this.solList;
     }
 
-    private void generateSubsets(int[] nums, LinkedList<Integer> result, int start) {
-        if(result.size() > nums.length) {
-            return;
-        }
-        
-        this.resultList.add(new LinkedList<Integer>(result));
+    private void generateSubsets(int[] nums, int start, LinkedList<Integer> sol) {
+        this.solList.add(new LinkedList<>(sol));
 
-        for(int i = start; i < nums.length; i++) {
-            result.add(nums[i]);
-            generateSubsets(nums, result, i + 1);
-            result.removeLast();
+        for(int i = start; i < nums.length; i++){
+            sol.push(nums[i]);
+            generateSubsets(nums, i + 1, sol);
+            sol.pop();
         }
     }
 }
