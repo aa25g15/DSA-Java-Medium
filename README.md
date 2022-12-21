@@ -1217,3 +1217,121 @@ class Solution {
     }
 }
 ```
+
+### 31. Merge Intervals - https://leetcode.com/problems/merge-intervals/description/
+```java
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        ArrayList<int[]> solList = new ArrayList<>();
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        
+        int i = 0;
+        int j = 0;
+        int[] sol = new int[2];
+        while(j < intervals.length){
+            sol[0] = intervals[i][0];
+            sol[1] = Math.max(intervals[j][1], sol[1]);
+            if(j < intervals.length - 1 && sol[1] >= intervals[j + 1][0]){
+                // Merging intervals
+                j++;
+            } else {
+                // Mutually exclusive intervals
+                solList.add(sol);
+                sol = new int[2];
+                j++;
+                i = j;
+            }
+        }
+        return solList.toArray(new int[solList.size()][]);
+    }
+}
+```
+
+### 32. Insert Interval - https://leetcode.com/problems/insert-interval/description/
+```java
+class Solution {
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        int[][] intervals2 = new int[intervals.length + 1][];
+        ArrayList<int[]> solList = new ArrayList<>();
+
+        // Insert new interval in the right starting place
+        int i = 0;
+        int j = 0;
+        boolean inserted = false;
+        while(i < intervals.length){
+            if(!inserted && newInterval[0] < intervals[i][0]){
+                intervals2[j++] = newInterval;
+                inserted = true;
+            } else {
+                intervals2[j++] = intervals[i++];
+            }
+        }
+        if(!inserted){
+            // Will be inserted in the end
+            intervals2[intervals2.length - 1] = newInterval;
+        }
+
+        merge(solList, intervals2);
+        return solList.toArray(new int[solList.size()][]);
+    }
+
+    private void merge(ArrayList<int[]> solList, int[][] intervals2){
+        int i = 0;
+        int j = 0;
+        int[] sol = new int[2];
+        
+        while(j < intervals2.length){
+            sol[0] = intervals2[i][0];
+            sol[1] = Math.max(intervals2[j][1], sol[1]);
+            
+            if(j < intervals2.length - 1 && sol[1] >= intervals2[j + 1][0]){
+                // merge
+                j++;
+            } else {
+                // mutually independent
+                solList.add(sol);
+                sol = new int[2];
+                j++;
+                i = j;
+            }
+        }
+    }
+}
+```
+
+### 33. Non-Overlapping Intervals - https://leetcode.com/problems/non-overlapping-intervals/description/
+```java
+class Solution {
+    public int eraseOverlapIntervals(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        return calculateIntervals(intervals);
+    }
+
+    private int calculateIntervals(int[][] intervals){
+        int i = 0;
+        int j = 0;
+        int[] tempInterval = new int[2];
+        int sol = 0;
+        tempInterval[0] = intervals[i][0];
+        tempInterval[1] = intervals[j][1];
+        while(j < intervals.length){
+            tempInterval[0] = intervals[i][0];
+            tempInterval[1] = Math.min(intervals[j][1], tempInterval[1]);
+            if(j < intervals.length - 1 && tempInterval[1] > intervals[j + 1][0]){
+                // merge
+                j++;
+                sol++;
+            } else {
+                j++;
+                i = j;
+                tempInterval = new int[2];
+                if(j < intervals.length){
+                    tempInterval[0] = intervals[i][0];
+                    tempInterval[1] = intervals[j][1];
+                }
+            }
+        }
+        return sol;
+    }
+}
+```
